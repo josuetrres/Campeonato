@@ -88,6 +88,8 @@ class Campeonato(models.Model):
     periodo = models.CharField(max_length=100)
     inscripcionesList = models.ManyToManyField(Inscripcion, blank=True, related_name='campeonatos')
     partidoList = models.ManyToManyField(Partido, blank=True, related_name='campeonatos')
+    resultado = models.ForeignKey('ResultadoCampeonato', on_delete=models.CASCADE, blank=True, null=True, related_name='campeonatos')
+    tablaPosicion = models.ManyToManyField('TablaPosiciones', blank=True, related_name='campeonatos')
     def __str__(self):
         return self.nombre
     
@@ -102,3 +104,11 @@ class TablaPosiciones(models.Model):
     golesFavor = models.IntegerField()
     golesContra = models.IntegerField()
     estadistica = models.ForeignKey(EstadisticaEquipo, on_delete=models.CASCADE, related_name='posiciones')
+
+class ResultadoCampeonato(models.Model):
+    campeonato = models.ForeignKey(Campeonato, on_delete=models.DO_NOTHING, related_name='resultados')
+    primerLugar = models.ForeignKey(Inscripcion, on_delete=models.DO_NOTHING, related_name='resultados_ganador')
+    segundoLugar = models.ForeignKey(Inscripcion, on_delete=models.DO_NOTHING, related_name='resultados_subcampeon')
+    tercerLugar = models.ForeignKey(Inscripcion, on_delete=models.DO_NOTHING, related_name='resultados_tercer_lugar')
+    def __str__(self):
+        return self.campeonato.nombre
