@@ -3,4 +3,5 @@ Diagrama UML
 
 
 Creación de instancias en DjangoAdmin
-![image](https://github.com/user-attachments/assets/c42c8169-f1c5-4ab7-96c9-13f45cbc60fb)
+![image](https://github.com/user-attachments/assets/d7a16cfd-54b1-46ce-9db2-be85b1b5aae4)
+
